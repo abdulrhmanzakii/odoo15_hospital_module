@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="patient_tag_vip" model="patient.tag" forcecreate="0">
+            <field name="name">Vip</field>
+        </record>
+
+        <record id="patient_tag_kid" model="patient.tag" forcecreate="0">
+            <field name="name">Kid</field>
+        </record>
+
+        <record id="patient_tag_adult" model="patient.tag" forcecreate="0">
+            <field name="name">Adult</field>
+        </record>
+
+        <record id="patient_tag_mr" model="patient.tag" forcecreate="0">
+            <field name="name">Mr</field>
+            <!-- to archive from xml file-->
+            <field name="active" eval="False"/>
+        </record>
+
+    </data>
+
+
+</odoo>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <record id="report_patient_details" model="ir.actions.report">
+        <field name="name">Patient Details</field>
+        <field name="model">hospital</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">om_hospital.report_patient_id_detail</field>
+        <field name="report_file">om_hospital.report_patient_id_detail</field>
+        <field name="binding_model_id" ref="model_hospital"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <record id="report_patient_card" model="ir.actions.report">
+        <field name="name">Patient Card</field>
+        <field name="model">hospital</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">om_hospital.report_patient_id_card</field>
+        <field name="report_file">om_hospital.report_patient_id_card</field>
+        <field name="binding_model_id" ref="model_hospital"/>
+        <field name="binding_type">report</field>
+    </record>
+
+<!--    <record id="report_patient_card_xls" model="ir.actions.report">-->
+<!--        <field name="name">Patient Card Excel</field>-->
+<!--        <field name="model">hospital.patient</field>-->
+<!--        <field name="report_type">xlsx</field>-->
+<!--        <field name="report_name">om_hospital.report_patient_id_card_xls</field>-->
+<!--        <field name="report_file">om_hospital.report_patient_id_card_xls</field>-->
+<!--        <field name="binding_model_id" ref="model_hospital_patient"/>-->
+<!--        <field name="binding_type">report</field>-->
+<!--    </record>-->
+    <template id="report_session">
+        <t t-call="report.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="report.external_layout">
+                </t>
+            </t>
+        </t>
+    </template>
+<!--    <record id="report_test_mee" model="ir.actions.report">-->
+<!--        <field name="name">Test me </field>-->
+<!--        <field name="model">stock.scrap</field>-->
+<!--        <field name="report_type">qweb-pdf</field>-->
+<!--        <field name="report_name">om_hospital.report_test_me</field>-->
+<!--        <field name="report_file">om_hospital.report_test_me</field>-->
+<!--        <field name="binding_model_id" ref="model_stock_scrap"/>-->
+<!--        <field name="binding_type">report</field>-->
+
+<!--    </record>-->
+
+</odoo>
