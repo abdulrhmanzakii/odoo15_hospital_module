@@ -8,7 +8,7 @@ class HospitalAppointment(models.Model):
     _description = "Hospital Appointment"
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _rec_name = 'name'
-    _order ='id desc'
+    _order = 'id desc'
 
 
     name = fields.Char(string="Reference")
@@ -16,7 +16,7 @@ class HospitalAppointment(models.Model):
     active = fields.Boolean(string="Active", default=True)
     appointment_time = fields.Datetime(string="Appointment Time",default=fields.Datetime.now)
     booking_date= fields.Date(string="Booking Date", default=fields.Date.context_today)
-    gender = fields.Selection(related='patient_id.gender')
+    gender = fields.Selection(related='patient_id.gender',readonly=False)
     ref = fields.Char(string="reference of patient", tracking=True)
     prescription = fields.Html(string="prescription")
     doctor_id = fields.Many2one('res.users',string='Doctor',tracking=True)
@@ -42,7 +42,6 @@ class HospitalAppointment(models.Model):
     currency_id = fields.Many2one('res.currency', string='Currency',related='company_id.currency_id') # currency EUR OR USD
     amount_total=fields.Monetary(string='Total Price',currency_feild='currency_id',compute='_compute_amount_total')
     note=fields.Html(string="Note")
-    dom=fields.Char(default="1")
 
 
 
@@ -103,7 +102,7 @@ class HospitalAppointment(models.Model):
     def send_whatsapp(self):
         if not self.patient_id.phone:
             raise ValidationError(_('the patient does not have phone number'))
-        message ='Hellow *%s* , your *Appointment* is: %s , Thank you!' % (self.patient_id.name,self.name)
+        message ='Hello *%s* , your *Appointment* is: %s , Thank you!' % (self.patient_id.name,self.name)
         whatsapp_link='https://api.whatsapp.com/send?phone=%s&text=%s' % (self.patient_id.phone,message)
         self.message_post(body=message,subject='Whats app message')
 
@@ -153,8 +152,8 @@ class HospitalAppointment(models.Model):
         return self
 
 
-    def write(self,values):
-        res =super(HospitalAppointment, self).write(values)
+    def write(self, values):
+        res = super(HospitalAppointment, self).write(values)
         sl_no = 0
         for line in self.pharmacy_line_ids:
             sl_no += 1
@@ -196,6 +195,35 @@ class AppointmentPharmacyLines(models.Model):
     price_sub_total = fields.Monetary(string="Subtotal",compute='_compute_price_sub_total'
                                       ,currency_field='company_currency_id')
 
+    @api.model_create_multi
+    def create(self, vals):
+        appointments = super(AppointmentPharmacyLines, self).create(vals)
+        for appointment in appointments:
+            msg = f"A New Product Recently {appointment.product_id.name} Has Been Add"
+            appointment.appointment_id.message_post(body=msg)
+
+        return appointments
+
+    def write(self, vals):
+        self._log_access_tracking(vals)
+
+        return super().write(vals)
+
+    def _log_access_tracking(self, vals):
+        template_id = 'om_hospital.track_appointment_template'
+        for rec in self:
+            data = {}
+            if 'product_id' in vals:
+                data.update({'product_id': self.env["product.product"].browse(vals.get('product_id')).name})
+
+            if 'qty' in vals:
+                data.update({'qty': vals.get('qty')})
+
+            if 'price_unit' in vals:
+                data.update({'price_unit': vals.get('price_unit')})
+
+            if data:
+                rec.appointment_id.message_post_with_view(template_id, values={'rec': rec, 'data': data})
 
 
 

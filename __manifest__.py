@@ -17,6 +17,7 @@
     "data/patient.tag.csv",
     "wizard/cancel_appointment_veiw.xml",
     "wizard/search_appointment_view.xml",
+    "wizard/report_appointment.xml",
     "veiws/menu.xml",
     "veiws/patient_veiw.xml",
     "veiws/appointment_veiw.xml",
@@ -26,18 +27,17 @@
     "veiws/odoo_play_ground.xml",
     "veiws/res_config_settings_views.xml",
     "veiws/operation_veiw.xml",
+    "veiws/tracking_appointment_values.xml",
     "report/report.xml",
     "report/patient_card.xml",
     "report/patient_details_template.xml",
-
-
-
+    "report/appointment_details.xml",
 
     ],
     'demo': [],
     'installable': True,
     'auto_install': False,
-     'License': 'LGPL-3',
+    'License': 'LGPL-3',
     'application': True,
     'sequence': -100,
 

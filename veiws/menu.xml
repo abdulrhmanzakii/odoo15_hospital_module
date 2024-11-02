@@ -16,10 +16,22 @@
               parent="menu_hospital_root"
               sequence="0"/>
 
-        <menuitem name="Configration"
+    <menuitem name="Configration"
               id="menu_configration_master"
               parent="menu_hospital_root"
               sequence="0"/>
+
+    <menuitem name="Reporting"
+              id="menu_reporting_master"
+              parent="menu_hospital_root"
+              sequence="0"/>
+
+    <menuitem name="Report"
+              id="menu_reporting"
+              parent="menu_reporting_master"
+              action="action_report_appointment"
+              sequence="0"/>
+
 
     <menuitem name="Cancellation"
               id="menu_cancel_appointment"
@@ -27,18 +39,17 @@
               action="action_cancel_appointment"
               sequence="20"/>
 
-        <menuitem name="Search for appointment"
+    <menuitem name="Search for appointment"
               id="menu_search_appointment"
               parent="menu_appointment_master"
               action="action_search_appointment"
               sequence="30"/>
 
 
-
-<!--    <menuitem name="Technical"-->
-<!--              id="menu_Technical_master"-->
-<!--              parent="menu_hospital_root"-->
-<!--              sequence="0"/>-->
+    <!--    <menuitem name="Technical"-->
+    <!--              id="menu_Technical_master"-->
+    <!--              parent="menu_hospital_root"-->
+    <!--              sequence="0"/>-->
 
 
 </odoo>

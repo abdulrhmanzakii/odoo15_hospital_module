@@ -20,7 +20,7 @@ class HospitalPatient(models.Model):
     gender = fields.Selection([("male", "Male"), ("female", "Female"), ], string='Gender', tracking=True,default='male')
     active = fields.Boolean(string="Active", default=True)
     appointment_id = fields.Many2one('appointment', string="Appointments")
-    image =fields.Image(string="Patient Image")
+    image = fields.Image(string="Patient Image")
     tag_ids = fields.Many2many('patient.tag',string="Patient Tag")
     appointment_count = fields.Integer(string="Appointment Count",compute='_compute_appointment_count',store=True)
     appointment_ids = fields.One2many('appointment','patient_id',string="Appointments for count")
@@ -32,7 +32,7 @@ class HospitalPatient(models.Model):
     phone=fields.Char(string="Phone number")
     email = fields.Char(string="Email")
     website = fields.Char(string="Website")
-    company_id =fields.Many2one('res.company',string="company name")
+    company_id = fields.Many2one('res.company',string="company name")
 
 
 
@@ -66,7 +66,7 @@ class HospitalPatient(models.Model):
 
     @api.model
     def create(self,vals):
-        vals['ref']= self.env['ir.sequence'].next_by_code('hospital')
+        vals['ref'] = self.env['ir.sequence'].next_by_code('hospital')
         return super(HospitalPatient,self).create(vals)
 
 
@@ -115,7 +115,6 @@ class HospitalPatient(models.Model):
         start_of_year=birth_date.replace(day=1,month=1)
         end_of_year=birth_date.replace(day=31,month=12)
         return [('birth_date','>=',start_of_year),('birth_date','<=',end_of_year)]
-
 
 
 

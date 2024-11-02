@@ -54,10 +54,10 @@
                                                     </td>
                                                 </tr>
                                             </table>
-                                            <div>
-                                                <img t-att-src="'/report/barcode/QR/'+o.name"
-                                                     style="width:150px;height:75px" alt="Barcode"/>
-                                            </div>
+<!--                                            <div>-->
+<!--                                                <img t-att-src="'/report/barcode/QR/'+o.name"-->
+<!--                                                     style="width:150px;height:75px" alt="Barcode"/>-->
+<!--                                            </div>-->
                                         </td>
                                     </tr>
                                 </table>

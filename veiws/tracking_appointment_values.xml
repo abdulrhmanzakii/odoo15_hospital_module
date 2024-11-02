@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="track_appointment_template">
+        <div>
+            <strong>Product Information Has Been Updated.</strong>
+        </div>
+        <ul>
+
+            <t t-if=" 'product_id' in data">
+                <li>
+                    Product Name : <t t-esc="rec.product_id.name"/> To ---> <t t-esc="data.get('product_id')"/>
+                </li>
+            </t>
+<!--            <t t-if=" 'description' in data">-->
+<!--                <li>-->
+<!--                    Description : <t t-esc="rec.description"/> To -&ndash;&gt; <t t-esc="data.get('description')"/>-->
+<!--                </li>-->
+<!--            </t>-->
+            <t t-if=" 'qty' in data">
+                <li>
+                    Quantity in "<t t-esc="rec.product_id.name"/>" Changed From : <t t-esc="rec.qty"/> To --> <t t-esc="data.get('qty')"/>
+                </li>
+            </t>
+            <t t-if=" 'price_unit' in data">
+                <li>
+                    Price Unit in "<t t-esc="rec.product_id.name"/>"  Changed From : <t t-esc="rec.price_unit"/> To ---> <t t-esc="data.get('price_unit')"/>
+                </li>
+            </t>
+
+        </ul>
+
+    </template>
+
+
+</odoo>
