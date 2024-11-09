@@ -31,7 +31,7 @@ class ReportPatientCard(models.AbstractModel):
     #
     # @api.model
     # def _get_report_values(self, docids, data=None):
-    #     docs = self.env['employee.penalty'].browse(docids)
+    #     docs = self.env['hospital'].browse(docids)
     #     docs_done = docs.filtered(lambda d: d.state == 'done')
     #
     #     if not docs_done:
