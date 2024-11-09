@@ -12,6 +12,7 @@
     'data': [
     "security/ir.model.access.csv",
     "data/patient_tag_data.xml",
+    "data/mail_template_data.xml",
     "data/sequnce_view.xml",
     "data/sequnce_appointment_view.xml",
     "data/patient.tag.csv",

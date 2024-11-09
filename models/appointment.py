@@ -42,6 +42,7 @@ class HospitalAppointment(models.Model):
     currency_id = fields.Many2one('res.currency', string='Currency',related='company_id.currency_id') # currency EUR OR USD
     amount_total=fields.Monetary(string='Total Price',currency_feild='currency_id',compute='_compute_amount_total')
     note=fields.Html(string="Note")
+    test_field= fields.Binary(string="Binary Field")
 
 
 
@@ -111,6 +112,13 @@ class HospitalAppointment(models.Model):
             'target': 'new',
             'url': whatsapp_link,
         }
+    def send_mail(self):
+        template = self.env.ref('om_hospital.appointment_mail_template')
+        for rec in self:
+            if  rec.patient_id.email:
+                template.send_mail(rec.id, force_send = True)
+            else:
+                raise ValidationError(_("patient Does not Have Email "))
 
     def action_done(self):
         for rec in self:

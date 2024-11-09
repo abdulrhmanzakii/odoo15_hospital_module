@@ -65,6 +65,7 @@
                 <field name="doctor_id" optional="show" widget="many2one_avatar_user"/>
                 <field name="appointment_time" optional="show"/>
                 <field name="booking_date" optional="show"/>
+                <field name="priority" widget="priority" optional="show"/>
                 <field name="activity_ids" widget="list_activity" optional="show"/>
                 <field name="amount_total" decoration-bf="1"/>
                 <field name="state" widget="badge" optional="show"
@@ -99,6 +100,8 @@
                             type="object" states="in_consultation"/>
                     <button name="send_whatsapp" class="oe_highlight" data-hotkey="w" icon="fa-whatsapp"
                             type="object"/>
+                    <button name="send_mail" string="Send Email" class="oe_highlight"
+                            type="object"/>
                     <!--context="{'default_appointment_id' : active_id}"-->
                     <button name="%(om_hospital.action_cancel_appointment)d" string="Cancel" class="oe_highlight"
                             data-hotkey="x"
@@ -132,6 +135,7 @@
                             <field name="booking_date"/>
                             <field name="ref" readonly="1" force_save="1"/>
                             <field name="gender"/>
+                            <field name="test_field"/>
                             <field name="operation_id"/>
                         </group>
                         <group>

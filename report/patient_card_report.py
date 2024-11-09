@@ -28,3 +28,15 @@ class ReportPatientCard(models.AbstractModel):
             'docs' : self.env['hospital'].browse(docids[0]),
             'appointment':appointment_list,
         }
+    #
+    # @api.model
+    # def _get_report_values(self, docids, data=None):
+    #     docs = self.env['employee.penalty'].browse(docids)
+    #     docs_done = docs.filtered(lambda d: d.state == 'done')
+    #
+    #     if not docs_done:
+    #         raise UserError('You cannot print this report unless the status is "Done".')
+    #
+    #     return {
+    #         'docs': docs_done,
+    #     }
